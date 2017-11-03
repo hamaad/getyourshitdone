@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                margin: 0;
+            }
+            ul{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 15%;
+                background-color: gray;
+                position: fixed;
+                height: 100%;
+                overflow: auto;
+            }
+            li a{
+                display: block;
+                color: white;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+            li a.active{
+                background-color: blue;
+                color: white;
+            }
+            li a:hover:not(.active){
+                background-color: black;
+                color: white;
+            }
+           
+            section{
+                position:relative;
+                margin-left:15%;
+                border:1px solid black;
+            }
+           
+            .contact{
+                background-color:lightcyan;
+                text-align:center;
+                color:black;
+                padding:20px;
+            }
+            .contactUsInfo{
+                margin-left:200px;
+                width:75%;
+                height:200px;
+            }
+            .contact_form{
+                background: #f2f2f2; 
+                border-radius: 5px;
+                padding:40px;
+                margin-left:35%;
+                margin-right:15%;
+                margin-top:50px; 
+                height:500px; 
+                margin-bottom:50px;
+                
+            }
+            input[type=text], textarea{
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-top: 6px;
+                margin-bottom: 16px;
+                resize: vertical;
+            }
+            input[type=submit]{
+                background-color: red;
+                color: white;
+                padding: 12px 20px;
+                border: transparent;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            input[type=submit]:hover{
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+            <div>
+                <ul>
+                    <li><a href ="#task">Task</a></li>
+                    <li><a href ="#calendar">Calendar</a></li>
+                    <li><a href ="#groups">Groups</a></li>
+                    <li><a href ="options">Options</a></li>
+                    <li><a class= "active" href ="contact">Contact us</a></li>
+                </ul>
+                <div>
+                    <section class="contact">
+                        <div>
+                            <h2>Contact Us</h2>
+                        </div>
+                        <div class="contactusinfo">
+                            <p>
+                                email: getyourshitdone4@gmail.com
+                                <br>
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class ="contact_form">
+                <form>
+                    <label><b>First Name</b></label>
+                    <input type ="text" name ="first_name" placeholder ="Your name..">
+                    <br>
+                    <br>
+                    <label><b>Last Name</b></label>
+                    <input type ="text" name ="last_name" placeholder ="Your last name..">
+                    <br>
+                    <br>
+                    <lable><b>E-mail</b></lable>
+                    <input type ="text" name ="email" placeholder ="Your email..">
+                    <br>
+                    <br>
+                    <lable><b>Message</b></lable>
+                    <textarea name ="message" placeholder ="Write something.." style ="height:200px"></textarea>
+                    <br>
+                    <br>
+                    <input type ="submit" value ="Submit">
+                </form>
+            </div>
+    </body>
+</html>

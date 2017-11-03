@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create Account</title>
+        <style>
+            body{
+                font-family:Arial;
+                background-image:url('https://www.challies.com/wp-content/uploads/productivity.jpg');
+            }
+            .create_account{
+                background: white; 
+                padding:40px; 
+                width:400px; 
+                margin:auto; 
+                margin-top:50px; 
+                height:725px; 
+                margin-bottom:50px;
+                
+            }
+            form{
+                width:400px; 
+                text-align:center;
+                position: absolute;
+                
+            }
+            input{
+                width:200px; 
+                text-align:center; 
+                background:white;
+                border:1px solid gray;
+                border-radius:2px; 
+                font-size:16px; 
+                font-weight:200; 
+                padding:5px 0; 
+                transition:border .5s;
+                
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class ="create_account">
+            <form>
+                <h1 style ="font-size:50px; color:red; font-family:fantasy;">Get Your Sh*t Done</h1>
+                <h2>Sign Up</h2>
+                <lable><b>First Name</b></lable>
+                <br>
+                <input type="text" name ="fist_name" required>
+                <br>
+                <lable><b>Last Name</b></lable>
+                <br>
+                <input type ="text" name ="last_name" required>
+                <br>
+                <lable><b>User Name</b></lable>
+                <br>
+                <input type ="text" name ="user_name"required>
+                <br>
+                <lable><b>Email</b></lable>
+                <br>
+                <input type ="text" name ="email"required>
+                <br>
+                <lable><b>Password</b></lable>
+                <br>
+                <input type="password" name ="password" required>
+                <br>
+                <lable><b>Repeat Password</b></lable>
+                <br>
+                <input type="password" name ="repeat_password" required>
+                <br>
+                <lable><b>Charity</b></lable>
+                <br>
+                <select name ="non-profit">
+                    <option value ="0">Choose your favorite charity organization below
+                    <option value ="A">Attack Poverty
+                    <option value ="C">Chaurices Auntie Foundation
+                    <option value ="An">Angleface Foundation
+                    <option value ="3ABF">3 A Bereavement Foundation
+                </select>
+                <br>
+                <br>
+                <button type ="botton" class ="cancelbtn" style ="background-color:red; color:white; padding:10px 20px;">Cancel</button>
+                <button type ="submit" class ="signupbtn" style ="background-color:blue; color:white; padding:10px 20px;">Signup</button>
+            </form>
+        </div>
+    </body>
+</html>

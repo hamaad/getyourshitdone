@@ -1,0 +1,61 @@
+<body>
+  <div class="container">
+    {{#if currentUser}}
+      <header>
+        <h1>Todo List ({{incompleteCount}})</h1>
+
+        <label class="hide-completed">
+          <input type="checkbox" />
+          Hide Completed Tasks
+        </label>
+
+        {{> loginButtons}}
+
+        <form class="new-group">
+          <input type="text" name="text" placeholder="Type to add new group" />
+        </form>
+
+        <br><br>
+
+        <ul>
+          {{#each userGroups}}
+            {{> group}}
+          {{/each}}
+        </ul>
+
+        <select id="group-select">
+          <option disabled="disabled" selected="selected">List of Groups</option>
+          {{#each allGroups}}
+              <option value="{{_id}}">{{name}}</option>
+          {{/each}}
+        </select>
+
+        <button class="join-group">Join Group Selected</button>
+
+
+        <form class="new-task">
+          <input type="text" name="text" placeholder="Type to add new tasks" />
+        </form>
+
+        <br>
+        <select id="task-group-select">
+          <option disabled="disabled" selected="selected">Group to add task into</option>
+          {{#each userGroups}}
+              <option value="{{_id}}">{{name}}</option>
+          {{/each}}
+        </select>
+      </header>
+
+      <ul>
+        {{#each tasks}}
+          {{> task}}
+        {{/each}}
+      </ul>
+      {{else}}
+        <header>
+          <h1> Todo list -- Please log in :)</h1>
+          {{> loginButtons}}
+        </header>
+    {{/if}}
+  </div>
+</body>

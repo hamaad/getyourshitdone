@@ -1,0 +1,15 @@
+<template name="task">
+  <li class="{{#if checked}}checked{{/if}}">
+    <button class="delete">&times;</button>
+
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+
+    <span class="text"><strong>Group: {{getGroupName}} AssignedUser: {{getAssignedUsername}}</strong> - {{text}}</span>
+
+    <form class="update-task-name">
+      <input type="text" name="text" placeholder="Update task name here" />
+    </form>
+
+  </li>
+
+</template>
