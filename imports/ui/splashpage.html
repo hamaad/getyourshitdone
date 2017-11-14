@@ -55,13 +55,12 @@
 
         <div class="add-group-wrapper">
           <input type ="text"  class="form-control " id ="add-group" placeholder ="Add new group">
-          <button id="add-group-button" class="add-group-button" type="submit">New Group</button>
+          <button id="add-group-button" class="add-group-button">New Group</button>
         </div>
 
         <div class="userG">
         <ul>
           {{#each userGroups}}
-            <p> user has a group<br></p>
             {{> group}}
           {{/each}}
         </ul>

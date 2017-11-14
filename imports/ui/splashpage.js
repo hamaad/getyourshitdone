@@ -5,21 +5,10 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import { Tasks } from '../api/tasks.js';
 import { Groups } from '../api/groups.js';
-//import { Body } from './body.js'
 
 import './task.js';
 import './group.js';
 import './splashpage.html';
-
-Template.splashpage.onRendered(function() {
-    $('#add-group-button').click(function() {
-      console.log("The user clicked on the new group button.")
-
-      const groupName = $('#add-group').val();
-
-      Meteor.call('groups.newGroup', groupName);
-    })
-});
 
 Template.splashpage.helpers({
   getuserID: function() {
@@ -53,10 +42,15 @@ Template.splashpage.helpers({
 
 Template.splashpage.events({
   'click .join-group'(event) {
-    groupId = document.getElementById("group-select").options[document.getElementById("group-select").selectedIndex].value;
-    console.log("xd");
-    console.log(groupId);
+    groupId = $('group-select').options[$('group-select').selectedIndex].val();
+    
     Meteor.call('groups.joinGroup', groupId);
+  },
+
+  'click .add-group-button'(event) {
+    const groupName = $('#add-group').val();
+
+    Meteor.call('groups.newGroup', groupName);
   },
 
 });
