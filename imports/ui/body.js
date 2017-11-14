@@ -6,8 +6,9 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Tasks } from '../api/tasks.js';
 import { Groups } from '../api/groups.js';
 
-import './task.js'
-import './group.js'
+import './task.js';
+import './group.js';
+import './splashpage.js';
 import './body.html';
 
 Template.body.onCreated(function bodyOnCreated() {
