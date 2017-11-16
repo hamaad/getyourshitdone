@@ -1,0 +1,33 @@
+<template name="groupview">
+  <main role="main" class="container" id="primary-section">
+    <div class="container">
+      <div class="add-group-wrapper">
+        <input type ="text"  class="form-control " id ="add-group" placeholder ="Add new group">
+        <button id="add-group-button" class="add-group-button">New Group</button>
+      </div>
+
+      <br>
+
+      <div class="userG">
+        <ul>
+          {{#each userGroups}}
+            {{> group}}
+          {{/each}}
+        </ul>
+      </div>
+
+      <select id="group-select">
+        <option disabled="disabled" selected="selected">List of All Groups</option>
+        {{#each allGroups}}
+            <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+      </select>
+
+      <button class="join-group">Join Group Selected</button>
+
+      <div class="starter-template">
+
+      </div>
+    </div>
+  </main>
+</template>

@@ -11,23 +11,11 @@ import './group.js';
 import './splashpage.html';
 
 Template.splashpage.helpers({
-  getuserID: function() {
-    return this._id;
-  },
-  tasks() {
-    console.log("looking for tasks...");
-    
-    console.log("gonna return straight up");
-    return Tasks.find({assignedUserId: Meteor.userId(), }, { sort: { createdAt: -1 } });
-  },
-  incompleteCount() {
-    return Tasks.find({ checked: { $ne: true }, ownerId:  Meteor.userId() }).count();
-  },
   userGroups() {
     return Groups.find({userIds: Meteor.userId()});
   },
-  allGroups() {
-    return Groups.find({});
+  tasks() {
+    return Tasks.find({assignedUserId: Meteor.userId(), }, { sort: { createdAt: -1 } });
   },
 });
 
