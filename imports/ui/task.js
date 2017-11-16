@@ -15,15 +15,16 @@ Template.task.helpers({
 });
 
 Template.task.events({
-  'click .toggle-checked'() {
+  'click .task-complete'() {
     // Set the checked property to the opposite of its current value
-    Meteor.call('tasks.setChecked', this._id, !this.checked);
+    Meteor.call('tasks.setFinished', this._id, !this.finished);
   },
-  'click .delete'() {
+  'click .task-delete'() {
     Meteor.call('tasks.remove', this._id);
   },
 
   'submit .update-task-name'(event) {
+    // this doesn't work yet. : )
     event.preventDefault();
 
     Meteor.call('tasks.updateName', this._id, event.target.text.value);

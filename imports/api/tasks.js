@@ -10,12 +10,16 @@ Meteor.methods({
     check(text, String);
     check(groupId, String);
 
-    Tasks.insert({
+    taskId = Tasks.insert({
       text,
       createdAt: new Date(), // current time
       ownerId: Meteor.userId(),
       assignedUserId: Meteor.userId(),
       groupId: groupId,
+    });
+
+    Meteor.users.update(Meteor.userId(), {
+      $push: { 'assignedTaskIds': taskId},
     });
 
   },
@@ -51,15 +55,15 @@ Meteor.methods({
 
   },
 
-  // this method takes in a string taskId and a boolean setChecked and updates it in the collection
-  'tasks.setChecked'(taskId, setChecked) {
+  // this method takes in a string taskId and a boolean setFinished and updates it in the collection
+  'tasks.setFinished'(taskId, setFinished) {
     // do some basic verification of input
     check(taskId, String);
-    check(setChecked, Boolean);
+    check(setFinished, Boolean);
 
     // update tasks
     Tasks.update(taskId,
-      {$set: { 'checked': setChecked},
+      {$set: { 'finished': setFinished},
     });
   },
 
