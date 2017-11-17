@@ -23,7 +23,6 @@ Template.groupview.events({
     groupId = document.getElementById("group-select").options[document.getElementById("group-select").selectedIndex].value;
 
     Meteor.call('groups.joinGroup', groupId);
-
   },
 
   'click .add-group-button'(event) {
