@@ -2,16 +2,6 @@
   <main role="main" class="container" id="primary-section">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="add-task-wrapper">
-          <input type ="text"  class="form-control" id ="add-task" placeholder ="Add new task">
-          <select id="task-group-select">
-            <option disabled="disabled" selected="selected">List of Joined Groups</option>
-            {{#each userGroups}}
-                <option value="{{_id}}">{{name}}</option>
-            {{/each}}
-          </select>
-          <button id="add-task-button" class="add-task-button">New Task</button>
-        </div>
         <div class="col-12 ">
           <div class="row individual_task_header ">
             <h5>All Tasks</h5>

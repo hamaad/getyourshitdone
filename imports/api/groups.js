@@ -70,7 +70,10 @@ if (Meteor.isServer) {
 
     'groups.getGroupName'(groupId) {
       return Groups.findOne(groupId).name;
+    },
 
+    'groups.getUserIds'(groupId) {
+      return Groups.findOne(groupId).userIds;
     },
 
   });

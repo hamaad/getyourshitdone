@@ -9,6 +9,7 @@ import { Groups } from '../api/groups.js';
 import './task.js';
 import './group.js';
 import './splashpage.js';
+import './addTask.js';
 import './groupview.js';
 import './body.html';
 

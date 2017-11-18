@@ -1,0 +1,46 @@
+<template name="addTask">
+  <main role="main" class="container" id="primary-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="add-task-wrapper">
+          Task Name:
+          <br>
+          <input type ="text"  class="form-control" id ="add-task" placeholder ="Add new task">
+          <br>
+          Group:
+          <select id="task-group-select">
+            <option disabled="disabled" selected="selected">List of Joined Groups</option>
+            {{#each userGroups}}
+                <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+          </select>
+          <br>
+          Repeatable:
+          <input type="radio" id="repeatable-yes">Yes
+          <input type="radio" id="repeatable-no">No
+          <br>
+            Days: <br>
+          <select multiple id="days-select">
+           <option value="Sunday">Sun</option>
+           <option value="Monday">Mon</option>
+           <option value="Tuesday">Tue</option>
+           <option value="Wednesday">Wed</option>
+           <option value="Thursday">Thur</option>
+           <option value="Friday">Fri</option>
+           <option value="Saturday">Sat</option>
+          </select>
+          <br>
+            Assignee: <br>
+          <select multiple id="task-users-select">
+          </select>
+          <br>
+          Due Date:<br>
+          <input type="date" id="dateName"><br><br>
+          
+          <button id="add-task-button" class="add-task-button">New Task</button>
+
+        </div>
+      </div>
+    </div>
+  </main>
+</template>
