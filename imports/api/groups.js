@@ -62,6 +62,12 @@ if (Meteor.isServer) {
       }
     },
 
+    'groups.addTask'(groupId, taskId) {
+      Groups.update(groupId, {
+        $push: {'taskIds': taskId},
+      });
+    },
+
     'groups.removeTask'(groupId, taskId) {
       Groups.update(groupId, {
         $pull: {'taskIds': taskId},

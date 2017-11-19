@@ -1,23 +1,10 @@
 <template name="task">
-  <!--<li class="{{#if checked}}checked{{/if}}">
-    <button class="delete">&times;</button>
-
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-
-    <span class="text"><strong>Group: {{getGroupName}} AssignedUser: {{getAssignedUsername}}</strong> - {{text}}</span>
-
-    <form class="update-task-name">
-      <input type="text" name="text" placeholder="Update task name here" />
-    </form>
-
-  </li>-->
-
   <!-- Task Card
         Figure out how to get in progress and stuff working -->
   <div class="col-4 task-card-wrapper">
     <div class="task-card in-progress">
 
-      <h3 class="task-name">{{text}} from {{getGroupName}} for {{getAssignedUsername}}</h3>
+      <h3 class="task-name">{{name}} from {{getGroupName}} for {{getAssignedUsername}}</h3>
 
       <div class="task-due-date">
         <span class="task-date">FAKE DATE</span>

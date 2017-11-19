@@ -7,12 +7,12 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     // this method takes in a string text and a string group id, and inserts a task
-    'tasks.insert'(text, groupId) {
-      check(text, String);
+    'tasks.insert'(name, groupId) {
+      check(name, String);
       check(groupId, String);
 
       taskId = Tasks.insert({
-        text,
+        name: name,
         createdAt: new Date(), // current time
         ownerId: Meteor.userId(),
         assignedUserId: Meteor.userId(),
@@ -22,6 +22,8 @@ if (Meteor.isServer) {
       Meteor.users.update(Meteor.userId(), {
         $push: { 'assignedTaskIds': taskId},
       });
+
+      Meteor.call('groups.addTask', groupId, taskId);
 
     },
 

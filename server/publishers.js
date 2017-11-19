@@ -1,9 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 
-Meteor.publish(null, function() {
-  return Meteor.users.find(this.userId, {fields: {role: 1}});
-});
-//
-// Meteor.publish('splashpage-user-groups', function() {
-//   return Groups.find();
-// });
+if (Meteor.isServer) {
+  Meteor.publish(null, function () {
+         return Meteor.users.find({}, {fields: {
+           _id: 1,
+           username: 1,
+           firstName: 1,
+           lastName: 1,
+           emailAddress: 1,
+           phoneNumber: 1,
+           groupIds: 1}});
+  });
+}

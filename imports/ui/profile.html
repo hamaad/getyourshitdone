@@ -1,0 +1,33 @@
+<template name="profile">
+  <head>
+    <style>
+      .edit-profile-button{
+        position:relative;
+        left:80%;
+      }
+      .profilepic{
+        left:30%;
+        position:relative;
+      }
+    </style>
+  </head>
+  <body>
+    <main role="main" class="container" id="primary-section">
+      <div class="col-11">
+        <button type="button" class="edit-profile-button">Edit</button>
+        <div class="profilepic"><img src="https://vignette.wikia.nocookie.net/southpark/images/0/06/ButtersStotch.png" width="100" height="100"></div>
+        <div class="username"><p>User Name: {{getUserDocument.username}}</p></div>
+        <div class="firstname"><p>First Name: {{getUserDocument.firstName}}</p></div>
+        <div class="lastname"><p>Last Name: {{getUserDocument.lastName}}</p></div>
+        <div class="email"><p>Email: {{getUserDocument.emailAddress}}</p></div>
+        <div class="phonenumber"><p>Phone#: {{getUserDocument.phoneNumber}}</p></div>
+        <br>
+        <div class="groups"><p>Groups:
+          {{#each userGroups}}
+            {{name}},
+          {{/each}}
+        </p></div>
+      </div>
+    </main>
+  </body>
+</template>

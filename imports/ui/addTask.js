@@ -19,7 +19,6 @@ Template.addTask.helpers({
 
 Template.addTask.events({
   'change #task-group-select'(event) {
-    console.log("xd");
     groupId = document.getElementById("task-group-select")
               .options[document.getElementById("task-group-select").selectedIndex]
               .value;
@@ -34,7 +33,6 @@ Template.addTask.events({
         option = document.createElement("option");
         option.value = result[i];
         option.text = Meteor.users.findOne(result[i]).username;
-        console.log(option.text);
         userIdsElement.add(option);
       }
 
@@ -44,8 +42,7 @@ Template.addTask.events({
   },
 
   'click .add-task-button'(event) {
-
-    text = document.getElementById("add-task");
+    name = document.getElementById("add-task").value;
 
     groupId = document.getElementById("task-group-select")
               .options[document.getElementById("task-group-select").selectedIndex]
@@ -53,12 +50,10 @@ Template.addTask.events({
 
     dueDate = document.getElementById("due-date");
 
-
-
     // Insert a task into the collection
-    Meteor.call('tasks.insert', text.value, groupId);
+    Meteor.call('tasks.insert', name, groupId);
 
     // clear textbox
-    text.value = "";
+    name.value = "";
   },
 });
