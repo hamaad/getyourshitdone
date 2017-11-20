@@ -5,6 +5,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import { Tasks } from '../api/tasks.js';
 import { Groups } from '../api/groups.js';
+import { TaskRepeatables } from '../api/taskRepeatables.js';
 
 import './task.js';
 import './group.js';
@@ -52,39 +53,24 @@ Template.addTask.events({
     dueDate = document.getElementById("due-date");
     console.log('dueDate: ' + dueDate);
 
-    //---------------------------
-    /*repeatableDays = document.getElementById('days-select')
-              .options[document.getElementById("days-select").selectedIndex]
-              .value;
-    */
+    //created repeatableDays[]
     repeatableDays = [];
-
     repeatableDaysLength = $('#days-select :selected').length
-
     for(x=0; x < repeatableDaysLength; x++) {
       repeatableDays[x] = document.getElementById('days-select')
                 .options[x]
                 .value;
     }
-
     console.log('repeatableDays: ' + repeatableDays);
 
-    //----------------------------
-    /*assignedUserIds = document.getElementById('task-users-select')
-              .options[document.getElementById("task-users-select").selectedIndex]
-              .value;
-    */
-
+    //create assignedUserIds[]
     assignedUserIds = [];
-
     assignedUserIdsLength = $('#task-users-select :selected').length
-
     for(x=0; x < assignedUserIdsLength; x++) {
       assignedUserIds[x] = document.getElementById('task-users-select')
                 .options[x]
                 .value;
     }
-
     console.log('assignedUserIds: ' + assignedUserIds);
 
 

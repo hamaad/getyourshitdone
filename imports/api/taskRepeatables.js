@@ -2,11 +2,11 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
-export const Groups = new Mongo.Collection('taskRepeteables');
+export const TaskRepeatables = new Mongo.Collection('taskRepeatables');
 if (Meteor.isServer) {
   //When a new taskRepetables is being callled create new 'taskrepeteables' collection
   Meteor.methods({
-    'taskRepeteables.newGroup'(taskRepeatableName, groupId, repeatedDays, assignedUserIds) {
+    'taskRepeatables.newGroup'(taskRepeatableName, groupId, repeatedDays, assignedUserIds) {
       //check data that is being passed into taskrepeteables
       check(taskRepeatableName, String);
       check(groupId, String);
