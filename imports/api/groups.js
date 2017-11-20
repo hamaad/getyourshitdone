@@ -12,7 +12,8 @@ if (Meteor.isServer) {
         createdAt: new Date(), // current time
         adminId: Meteor.userId(),
         userIds: [Meteor.userId()],
-        taskIds: []
+        taskIds: [],
+        taskRepeatableIds: []
       });
 
       Meteor.users.update(Meteor.userId(), {
