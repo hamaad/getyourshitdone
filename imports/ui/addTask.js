@@ -11,6 +11,8 @@ import './task.js';
 import './group.js';
 import './addTask.html';
 
+import moment from 'moment';
+
 
 Template.addTask.helpers({
   userGroups() {
@@ -44,13 +46,14 @@ Template.addTask.events({
 
   'click .add-task-button'(event) {
     console.log("add task button has been pressed")
-    name = document.getElementById("add-task").value;
-    console.log('name: ' + name);
+    taskName = document.getElementById("add-task").value;
+    console.log('name: ' + taskName);
     groupId = document.getElementById("task-group-select")
               .options[document.getElementById("task-group-select").selectedIndex]
               .value;
     console.log('groupId: ' + groupId);
-    dueDate = document.getElementById("due-date");
+
+    dueDate = document.getElementById("dateName").value;
     console.log('dueDate: ' + dueDate);
 
     //created repeatableDays[]
@@ -64,16 +67,20 @@ Template.addTask.events({
     console.log('repeatableDays: ' + repeatableDays);
 
     //create assignedUserIds[]
-    assignedUserIds = [];
-    assignedUserIdsLength = $('#task-users-select :selected').length
-    for(x=0; x < assignedUserIdsLength; x++) {
-      assignedUserIds[x] = document.getElementById('task-users-select')
+    assignedUserIdPool = [];
+    assignedUserIdPoolLength = $('#task-users-select :selected').length
+    for(x=0; x < assignedUserIdPoolLength; x++) {
+      assignedUserIdPool[x] = document.getElementById('task-users-select')
                 .options[x]
                 .value;
     }
-    console.log('assignedUserIds: ' + assignedUserIds);
+    console.log('assignedUserIds: ' + assignedUserIdPool);
 
+    h = moment() + 1 
+    tomorrow = h.format('dddd') + 1;
 
+    console.log(tomorrow);
+    //Meteor.call('taskRepeatables.newTaskRepeatables', taskName, groupId, repeatableDays, assignedUserIdPool);
     // Insert a task into the collection
     //Meteor.call('tasks.insert', name, groupId);
 

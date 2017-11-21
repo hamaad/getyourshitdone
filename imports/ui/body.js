@@ -5,6 +5,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import { Tasks } from '../api/tasks.js';
 import { Groups } from '../api/groups.js';
+import { TaskRepeatables } from '../api/taskRepeatables.js';
 
 import './task.js';
 import './group.js';

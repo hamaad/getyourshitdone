@@ -4,6 +4,7 @@ import { check } from 'meteor/check';
 
 import '../imports/api/tasks.js';
 import '../imports/api/groups.js';
+import '../imports/api/taskRepeatables.js';
 
 if (Meteor.isServer) {
 

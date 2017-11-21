@@ -75,6 +75,18 @@ if (Meteor.isServer) {
       });
     },
 
+    'groups.addRepeatableTask'(groupId, taskId) {
+      Groups.update(groupId, {
+        $push: {'taskRepeatableIds': taskId},
+      });
+    },
+
+    'groups.removeRepeatableTask'(groupId, taskId) {
+      Groups.update(groupId, {
+        $pull: {'taskRepeatableIds': taskId},
+      });
+    },
+
     'groups.getGroupName'(groupId) {
       return Groups.findOne(groupId).name;
     },
