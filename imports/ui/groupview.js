@@ -7,24 +7,20 @@ import { Groups } from '../api/groups.js';
 
 import './task.js';
 import './group.js';
+import './groupInvitation.js';
 import './groupview.html';
 
+
 Template.groupview.helpers({
+  userInvitations() {
+    return Meteor.users.findOne(Meteor.userId()).groupInvitations;
+  },
   userGroups() {
     return Groups.find({userIds: Meteor.userId()});
-  },
-  allGroups() {
-    return Groups.find({});
   },
 });
 
 Template.groupview.events({
-  'click .join-group'(event) {
-    groupId = document.getElementById("group-select").options[document.getElementById("group-select").selectedIndex].value;
-
-    Meteor.call('groups.joinGroup', groupId);
-  },
-
   'click .add-group-button'(event) {
     const groupName = document.getElementById("add-group");
 

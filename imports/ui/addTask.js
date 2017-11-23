@@ -76,9 +76,12 @@ Template.addTask.events({
     }
     console.log('assignedUserIds: ' + assignedUserIdPool);
 
-    h = moment() + 1 
-    tomorrow = h.format('dddd') + 1;
+    h = moment().add(1, 'days');
+    tomorrow = h.format('dddd');
 
+    hx = moment().add(2, 'months');
+
+    console.log(hx);
     console.log(tomorrow);
     //Meteor.call('taskRepeatables.newTaskRepeatables', taskName, groupId, repeatableDays, assignedUserIdPool);
     // Insert a task into the collection

@@ -1,7 +1,33 @@
 <template name="group">
-  <button class="leave-group">Leave group {{name}}</button>
+  <div class="groupWrapper">
+    <button class="leave-group">Leave group {{name}}</button>
 
-  <span class="text"><strong>{{name}}</strong> - Admin: <b>{{adminName}}</b> - Users: <b>{{userCount}}</b></span>
+    <span class="text"><strong>{{name}}</strong> - Admin: <b>{{adminName}}</b> - Users: <b>{{userCount}}</b></span>
 
-  <br>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#inviteUser{{_id}}">Invite User</button>
+
+
+    <br>
+
+    <div id="inviteUser{{_id}}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Invite a user to {{name}}</h4>
+            <h5 id="error-message{{_id}}"></h5>
+          </div>
+          <div class="modal-body">
+            <input type="text" id="invite-user-textbox{{_id}}" placeholder="Enter username to invite">
+            <button class="invite-user-button">Invite User</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </template>

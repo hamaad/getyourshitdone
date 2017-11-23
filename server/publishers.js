@@ -9,6 +9,7 @@ if (Meteor.isServer) {
            lastName: 1,
            emailAddress: 1,
            phoneNumber: 1,
-           groupIds: 1}});
+           groupIds: 1,
+           groupInvitations: 1}});
   });
 }

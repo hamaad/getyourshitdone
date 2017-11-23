@@ -21,7 +21,35 @@ if (Meteor.isServer) {
       });
     },
 
-    'groups.joinGroup'(groupId) {
+    'groups.inviteUser'(groupId, invitedUserId, hostUserId) {
+      invitedUser = Meteor.users.findOne(invitedUserId);
+
+      // check if invited user is already in this group
+      invitedUserGroupIds = invitedUser.groupIds;
+      for (i = 0; i < invitedUserGroupIds.length; i++) {
+        currentGroupId = invitedUserGroupIds[i];
+
+        if (currentGroupId === groupId) {
+          throw new Meteor.Error("user-already-in-group", "Error: User is already in this group.");
+        }
+      }
+
+      // check if invited user has already been invited to this group
+      invitedUserGroupInvitations = invitedUser.groupInvitations;
+      for(i = 0; i < invitedUserGroupInvitations.length; i++) {
+        currentInvitation = invitedUserGroupInvitations[i];
+
+        if (currentInvitation.groupId === groupId) {
+          throw new Meteor.Error("invitation-already-exists", "Error: User has already been invited to this group.");
+        }
+      }
+
+      Meteor.users.update(invitedUserId, {
+        $push: {"groupInvitations" : {"groupId" : groupId, "hostUserId" : hostUserId}}
+      });
+    },
+
+    'groups.acceptGroupInvitation'(groupId) {
       check(groupId, String);
 
       if (Groups.find({_id: groupId}).length !== 0) { // if the group is actually a real group...
@@ -37,9 +65,15 @@ if (Meteor.isServer) {
         }
       }
 
-      else {
-        // TODO: tell user they are already part of the group
-      }
+      Meteor.users.update(Meteor.userId(), {
+        $pop: {"groupInvitations" : {"groupId" : groupId}}
+      });
+    },
+
+    'groups.declineGroupInvitation'(groupId) {
+      Meteor.users.update(Meteor.userId(), {
+        $pop: {"groupInvitations" : {"groupId" : groupId}}
+      });
     },
 
     'groups.leaveGroup'(groupId) {
