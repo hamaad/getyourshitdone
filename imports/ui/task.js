@@ -6,8 +6,13 @@ import { Groups } from '../api/groups.js';
 import './task.html';
 
 Template.task.helpers({
-  getAssignedUsername: function() {
-    return Meteor.users.findOne(this.assignedUserId).username;
+  getAssignedUsernames: function() {
+    usernames = [];
+    for (i = 0; i < this.assignedUserIds.length; i++) {
+      currentAssignedUserId = this.assignedUserIds[i];
+      usernames.push(Meteor.users.findOne(currentAssignedUserId).username);
+    }
+    return usernames;
   },
   getGroupName: function() {
     return Groups.findOne(this.groupId).name;

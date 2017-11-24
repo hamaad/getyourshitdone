@@ -4,10 +4,10 @@
   <div class="col-4 task-card-wrapper">
     <div class="task-card in-progress">
 
-      <h3 class="task-name">{{name}} from {{getGroupName}} for {{getAssignedUsername}}</h3>
+      <h3 class="task-name">{{name}} from {{getGroupName}} for {{getAssignedUsernames}}</h3>
 
       <div class="task-due-date">
-        <span class="task-date">FAKE DATE</span>
+        <span class="task-date">{{dueDate}}</span>
         <span class="task-status-text">{{#if finished}}FINISHED{{else}}NOT FINISHED{{/if}}</span>
       </div>
       <div class="task-complete">

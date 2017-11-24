@@ -11,6 +11,6 @@ import './splashpage.html';
 
 Template.splashpage.helpers({
   tasks() {
-    return Tasks.find({assignedUserId: Meteor.userId(), }, { sort: { createdAt: -1 } });
+    return Tasks.find({assignedUserIds: Meteor.userId(), }, { sort: { createdAt: -1 } });
   },
 });

@@ -40,8 +40,8 @@
             <li id="nav-selectable" data-template="profile" class="nav-item">
               <a style= "color:black;" class="nav-link" href="#">Profile</a>
             </li>
-            <li id="nav-selectable" data-template="addTask" class="nav-item">
-              <a style= "color:black;" class="nav-link" href="#">+</a>
+            <li id="nav-add-task" class="nav-item">
+              <a style= "color:black;" class="nav-link" href="#" data-toggle="modal" data-target="#addTaskModal">+</a>
             </li>
             <li id="nav-selectable" data-template="groupview" class="nav-item">
               <a style= "color:black;" class="nav-link" href="#">Groups</a>
@@ -60,6 +60,58 @@
       {{> Template.dynamic template=anonymousPage}}
     {{/if}}
 
+    <!-- pop-up modal for adding a task through logged in nav bar -->
+    <div id="addTaskModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Add a task</h4>
+            <h5 id="error-message"></h5>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" id="add-task" placeholder="Add new task">
+
+            <h6>Group:
+            <select id="task-group-select">
+              <option disabled="disabled" selected="selected">Select Group Here</option>
+              {{#each userGroups}}
+                  <option value="{{_id}}">{{name}}</option>
+              {{/each}}
+            </select></h6>
+
+            <div id="addTaskAssignees" class="addTaskAssignees">
+              <h6>Assignee:
+              <select multiple id="task-users-select">
+              </select></h6>
+            </div>
+
+            <h6>Repeatable: <input type="checkbox" id="addTaskRepeatableChecked" /></h6>
+
+            <div id="addTaskRepeatableOptions" class="addTaskRepeatableOptions">
+              <h6>Days:
+              <select multiple id="days-select">
+               <option value="Sunday">Sun</option>
+               <option value="Monday">Mon</option>
+               <option value="Tuesday">Tue</option>
+               <option value="Wednesday">Wed</option>
+               <option value="Thursday">Thur</option>
+               <option value="Friday">Fri</option>
+               <option value="Saturday">Sat</option>
+              </select></h6>
+            </div>
+            <h6>Due Date:
+            <input type="date" id="dateName"></h6>
+          </div>
+          <div class="modal-footer">
+            <button id="add-task-button" class="add-task-button">New Task</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- Bootstrap core JavaScript
@@ -69,6 +121,37 @@
 src="https://code.jquery.com/jquery-3.2.1.min.js"
 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
+  <script>
+  // to reset the add task modal every time the user exists
+  // also to fade options in and out depending on the type of task
+  $(document).ready(function(){
+    $('#addTaskRepeatableOptions').fadeOut('slow');
+    $('#addTaskAssignees').fadeOut('slow');
+
+    $('#addTaskRepeatableChecked').change(function(){
+        if(this.checked)
+            $('#addTaskRepeatableOptions').fadeIn('slow');
+        else
+            $('#addTaskRepeatableOptions').fadeOut('slow');
+    });
+    $('#task-group-select').change(function(){
+        $('#addTaskAssignees').fadeIn('slow');
+    });
+
+    $('#addTaskModal').on('hidden.bs.modal', function(e)
+    {
+      $('#addTaskRepeatableOptions').fadeOut('slow');
+      $('#addTaskAssignees').fadeOut('slow');
+
+      $(".modal-body input").val("");
+      $('#task-group-select').val('Select Group Here');
+      $('#addTaskRepeatableChecked').prop('checked', false);
+      // $('#task-users-select :selected').length = 0;
+      $('#days-select').val('');
+    });
+
+  });
+  </script>
   <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"><\/script>')</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 

@@ -6,8 +6,8 @@ export const Tasks = new Mongo.Collection('tasks');
 if (Meteor.isServer) {
 
   Meteor.methods({
-    // this method takes in a string text and a string group id, and inserts a task
-    'tasks.insert'(name, groupId) {
+    // inserting a task!!!!!
+    'tasks.addTask'(name, groupId, assignedUserIds, dueDate) {
       check(name, String);
       check(groupId, String);
 
@@ -15,16 +15,20 @@ if (Meteor.isServer) {
         name: name,
         createdAt: new Date(), // current time
         ownerId: Meteor.userId(),
-        assignedUserId: Meteor.userId(),
         groupId: groupId,
+        assignedUserIds: assignedUserIds,
+        dueDate: dueDate
       });
 
-      Meteor.users.update(Meteor.userId(), {
-        $push: { 'assignedTaskIds': taskId},
-      });
+      for(i = 0; i < assignedUserIds.length; i++)
+      {
+        currentUserId = assignedUserIds[i];
+        Meteor.users.update(currentUserId, {
+          $push: { 'assignedTaskIds': taskId},
+        });
+      }
 
       Meteor.call('groups.addTask', groupId, taskId);
-
     },
 
     'tasks.assignUser'(taskId, userId) {
@@ -43,19 +47,20 @@ if (Meteor.isServer) {
     // this method takes in a string taskId and removes it from the collection
     'tasks.remove'(taskId) {
       check(taskId, String);
+      currentTask = Tasks.findOne(taskId);
+      var assignedUserIds = currentTask.assignedUserIds;
+      var groupId = currentTask.groupId;
 
-      var userId = Tasks.findOne(taskId).assignedUserId;
-      var groupId = Tasks.findOne(taskId).groupId;
-
-      Meteor.users.update(userId, {
-        $pull: {'assignedTaskIds' : taskId}
-      });
+      for(i = 0; i < assignedUserIds.length; i++) {
+        currentUserId = assignedUserIds[i];
+        Meteor.users.update(currentUserId, {
+          $pull: { 'assignedTaskIds': taskId},
+        });
+      }
 
       Meteor.call('groups.removeTask', groupId, taskId);
 
       Tasks.remove(taskId);
-
-
     },
 
     // this method takes in a string taskId and a boolean setFinished and updates it in the collection
