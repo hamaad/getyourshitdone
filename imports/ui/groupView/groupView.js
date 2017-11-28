@@ -1,17 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import { Session } from 'meteor/session';
 
-import { Tasks } from '../api/tasks.js';
-import { Groups } from '../api/groups.js';
+import { Groups } from '../../api/groups.js';
 
-import './task.js';
 import './group.js';
 import './groupInvitation.js';
-import './groupview.html';
+import './groupView.html';
 
 
-Template.groupview.helpers({
+Template.groupView.helpers({
   userInvitations() {
     return Meteor.users.findOne(Meteor.userId()).groupInvitations;
   },
@@ -20,7 +18,7 @@ Template.groupview.helpers({
   },
 });
 
-Template.groupview.events({
+Template.groupView.events({
   'click .add-group-button'(event) {
     const groupName = document.getElementById("add-group");
 

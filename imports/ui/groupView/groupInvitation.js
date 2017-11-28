@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
-import { Groups } from '../api/groups.js';
+import { Groups } from '../../api/groups.js';
 
 import './groupInvitation.html';
 

@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 
-import { Groups } from '../api/groups.js';
+import { Groups } from '../../api/groups.js';
 
 import './group.html';
 
@@ -14,7 +14,7 @@ Template.group.helpers({
 });
 
 Template.group.events({
-  'click .leave-group'() {
+  'click #leave-group'() {
     Meteor.call('groups.leaveGroup', this._id);
   },
   'click .invite-user-button'() {
@@ -35,4 +35,9 @@ Template.group.events({
       });
     }
   },
+  // 'click #goToGroup'() {
+  //   console.log('xd');
+  //   console.log(this);
+  //   // Session.set('currentUserPage', 'splashpage');
+  // },
 });

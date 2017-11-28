@@ -1,0 +1,45 @@
+<template name="group">
+  <div class="groupWrapper">
+    <span class="text">
+      <strong>{{name}}</strong> - Admin: <b>{{adminName}}</b> - Users: <b>{{userCount}}</b>
+      <button id="moreInfoButton{{_id}}">More Info</button>
+    </span>
+    <div id="moreInfo{{_id}}" style="display:none;">
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#inviteUser{{_id}}">Invite a user to {{name}}</button>
+      <button type="button" class="btn btn-info btn-sm" id="leave-group">Leave group {{name}}</button>
+    </div>
+
+    <br>
+
+    <div id="inviteUser{{_id}}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Invite a user to {{name}}</h4>
+            <h5 id="error-message{{_id}}"></h5>
+          </div>
+          <div class="modal-body">
+            <input type="text" id="invite-user-textbox{{_id}}" placeholder="Enter username to invite">
+            <button class="invite-user-button">Invite User</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // to fade more group info in and out
+    $(document).ready(function(){
+      $('#moreInfoButton{{_id}}').click(function(){
+        if ($('#moreInfo{{_id}}').is(':visible')) {
+          $('#moreInfo{{_id}}').fadeOut('slow');
+        } else {
+          $('#moreInfo{{_id}}').fadeIn('slow');
+        }
+      });
+    });
+  </script>
+</template>
