@@ -101,7 +101,6 @@ Template.body.events({
                 .value;
     }
     console.log('repeatableDays: ' + repeatableDays);
-
     //create assignedUserIds[]
     assignedUserIdPool = $('#task-users-select').val();
     console.log('assignedUserIds: ' + assignedUserIdPool);

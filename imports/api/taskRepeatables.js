@@ -7,7 +7,7 @@ export const TaskRepeatables = new Mongo.Collection('taskRepeatables');
 if (Meteor.isServer) {
   //When a new taskRepetables is being callled create new 'taskrepeteables' collection
   Meteor.methods({
-    'taskRepeatables.newTaskRepeatables'(taskRepeatableName, groupId, repeatedDays, assignedUserIds) {
+    'taskRepeatables.newTaskRepeatables'(taskRepeatableName, groupId, repeatedDays, assignedUserIds, repeatableType) {
       //check data that is being passed into taskrepeteables
       check(taskRepeatableName, String);
       check(groupId, String);
@@ -26,12 +26,18 @@ if (Meteor.isServer) {
         assignedUserIds: assignedUserIds,
         previousAssignedDate: null,
         previousAssignedUser: null,
-        dayInterval: null, //can be pushed from frontend
+        //dayInterval: [], //can be pushed from fronten
+        dayIntervalArrPosition: null,
+        assignedUserIdsArrPosition: null
+        //repeatableType: repeatableType,
       });
 
       //Pushes taskRepeatables to groupIds
       Meteor.call('groups.addRepeatableTask', groupId, taskRepeatableId);
 
-    },
+    }/*,
+    'taskRepeatables.updatePreviousAssingedDate' (taskRepeatableId, previousAssignedDate, newDate) {
+      $push:
+    },*/
   });
 }

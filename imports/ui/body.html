@@ -89,7 +89,15 @@
 
             <h6>Repeatable: <input type="checkbox" id="addTaskRepeatableChecked" /></h6>
 
-            <div id="addTaskRepeatableOptions" class="addTaskRepeatableOptions">
+            <div id='repeatableTypeSelect'>
+              <form>
+                Repeat By:<br>
+                <input type="radio" name="repeatBy" id="day">Days of The Week<br>
+                <input type="radio" name="repeatBy" id="xDays">Amount of Days
+              </form>
+            </div>
+
+            <div id="addTaskRepeatableOptionByDay">
               <h6>Days:
               <select multiple id="days-select">
                <option value="Sunday">Sun</option>
@@ -101,6 +109,11 @@
                <option value="Saturday">Sat</option>
               </select></h6>
             </div>
+
+            <div id="addTaskRepeatableOptionByXDay">
+              <input type="text" class="form-control" id="add-x-day" placeholder="By How Many Days?">
+            </div>
+
             <h6>Due Date:
             <input type="date" id="dateName"></h6>
           </div>
@@ -125,15 +138,34 @@ crossorigin="anonymous"></script>
   // to reset the add task modal every time the user exists
   // also to fade options in and out depending on the type of task
   $(document).ready(function(){
-    $('#addTaskRepeatableOptions').fadeOut('slow');
+    $('#addTaskRepeatableOptionByDay').fadeOut('slow');
     $('#addTaskAssignees').fadeOut('slow');
+    $('#addTaskRepeatableOptionByXDay').fadeOut('slow');
+    $('#repeatableTypeSelect').fadeOut('slow');
+
+    var repeatableType = null;
+    $('#repeatableTypeSelect').change(function(){
+      repeatableType = $('#repeatableTypeSelect').val();
+    });
 
     $('#addTaskRepeatableChecked').change(function(){
-        if(this.checked)
-            $('#addTaskRepeatableOptions').fadeIn('slow');
-        else
-            $('#addTaskRepeatableOptions').fadeOut('slow');
+        if(this.checked) {
+          $('#repeatableTypeSelect').fadeIn('slow');
+          console.log(repeatableType);
+          if(repeatableType == "day") {
+            $('#addTaskRepeatableOptionByDay').fadeIn('slow');
+          }
+          else if (repeatableType == "xDays"){
+            $('#addTaskRepeatableOptionByXDay').fadeIn('slow');
+          }
+        }
+        else {
+          $('#repeatableTypeSelect').fadeOut('slow');
+          $('#addTaskRepeatableOptionByDay').fadeOut('slow');
+          $('#addTaskRepeatableOptionByXDay').fadeOut('slow');
+        }
     });
+
     $('#task-group-select').change(function(){
         $('#addTaskAssignees').fadeIn('slow');
     });
