@@ -75,23 +75,17 @@ Template.body.events({
   },
 
   'click .add-task-button'(event) {
-    console.log("add task button has been pressed")
+
     taskName = document.getElementById("add-task").value;
-    console.log('name: ' + taskName);
     groupId = document.getElementById("task-group-select")
               .options[document.getElementById("task-group-select").selectedIndex]
               .value;
-    console.log('groupId: ' + groupId);
-
     dueDate = document.getElementById("dateName").valueAsDate;
-
-    dueDate.setHours(dueDate.getHours() + 6);
-
-    console.log('dueDate: ' + dueDate);
-
+    //dueDate.setHours(dueDate.getHours() + 6);
     isRepeatable = document.getElementById("addTaskRepeatableChecked").checked;
-    console.log('is repeatable? ' + isRepeatable);
-
+    //create assignedUserIds[]
+    assignedUserIdPool = $('#task-users-select').val();
+    repeatableType = $("input[name='repeatBy']:checked").val();
     //created repeatableDays[]
     repeatableDays = [];
     repeatableDaysLength = $('#days-select :selected').length
@@ -100,11 +94,16 @@ Template.body.events({
                 .options[x]
                 .value;
     }
-    console.log('repeatableDays: ' + repeatableDays);
-    //create assignedUserIds[]
-    assignedUserIdPool = $('#task-users-select').val();
+    repeatedFactor = document.getElementById("add-x-day").value;
+    console.log("add task button has been pressed");
+    console.log('name: ' + taskName);
+    console.log('groupId: ' + groupId);
+    console.log('dueDate: ' + dueDate);
+    console.log('is repeatable? ' + isRepeatable);
     console.log('assignedUserIds: ' + assignedUserIdPool);
-
+    console.log('repeatableType: ' + repeatableType);
+    console.log('repeatableDays: ' + repeatableDays);
+    console.log('repeatedFactor: ' + repeatedFactor);
 
     // normal task
     if (!isRepeatable) {

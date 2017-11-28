@@ -92,8 +92,8 @@
             <div id='repeatableTypeSelect'>
               <form>
                 Repeat By:<br>
-                <input type="radio" name="repeatBy" id="day">Days of The Week<br>
-                <input type="radio" name="repeatBy" id="xDays">Amount of Days
+                <input type="radio" name="repeatBy" value="byDay">Days of The Week<br>
+                <input type="radio" name="repeatBy" value="byXDays">Amount of Days
               </form>
             </div>
 
@@ -111,7 +111,7 @@
             </div>
 
             <div id="addTaskRepeatableOptionByXDay">
-              <input type="text" class="form-control" id="add-x-day" placeholder="By How Many Days?">
+              <input type="number" min="1" class="form-control" id="add-x-day" placeholder="By How Many Day(s)?">
             </div>
 
             <h6>Due Date:
@@ -144,20 +144,31 @@ crossorigin="anonymous"></script>
     $('#repeatableTypeSelect').fadeOut('slow');
 
     var repeatableType = null;
-    $('#repeatableTypeSelect').change(function(){
-      repeatableType = $('#repeatableTypeSelect').val();
-    });
+    /*$('#repeatableTypeSelect').click(function(){
+      console.log("yo");
+      repeatableType = document.getElementById('repeatBy').value;
+      console.log(repeatableType);
+    });*/
+
+    /*$("input[type='radio']").click(function(){
+      repeatableType = $("input[name='repeatBy']:checked").val();
+      console.log(repeatableType);
+    });*/
 
     $('#addTaskRepeatableChecked').change(function(){
         if(this.checked) {
           $('#repeatableTypeSelect').fadeIn('slow');
-          console.log(repeatableType);
-          if(repeatableType == "day") {
-            $('#addTaskRepeatableOptionByDay').fadeIn('slow');
-          }
-          else if (repeatableType == "xDays"){
-            $('#addTaskRepeatableOptionByXDay').fadeIn('slow');
-          }
+          $("input[type='radio']").click(function(){
+            repeatableType = $("input[name='repeatBy']:checked").val();
+            if(repeatableType == "byDay") {
+              $('#addTaskRepeatableOptionByDay').fadeIn('slow');
+              $('#addTaskRepeatableOptionByXDay').fadeOut('fast');
+            }
+            else if (repeatableType == "byXDays"){
+              $('#addTaskRepeatableOptionByXDay').fadeIn('slow');
+              $('#addTaskRepeatableOptionByDay').fadeOut('fast');
+            }
+          });
         }
         else {
           $('#repeatableTypeSelect').fadeOut('slow');

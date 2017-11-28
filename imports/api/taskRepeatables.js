@@ -22,14 +22,17 @@ if (Meteor.isServer) {
         createdAt: new Date(), // current time
         adminId: Meteor.userId(),
         groupId: groupId,
-        repeatedDays: repeatedDays,
         assignedUserIds: assignedUserIds,
         previousAssignedDate: null,
         previousAssignedUser: null,
         //dayInterval: [], //can be pushed from fronten
         dayIntervalArrPosition: null,
         assignedUserIdsArrPosition: null
-        //repeatableType: repeatableType,
+
+        /*
+        repeatableType: repeatableType,
+        repeatedDays: repeatedDays,
+        repeatedFactor: repeatedFactor*/
       });
 
       //Pushes taskRepeatables to groupIds
