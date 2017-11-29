@@ -17,7 +17,9 @@ if (Meteor.isServer) {
         ownerId: Meteor.userId(),
         groupId: groupId,
         assignedUserIds: assignedUserIds,
-        dueDate: dueDate
+        dueDate: dueDate,
+        overdue: false,
+        finished: false
       });
 
       for(i = 0; i < assignedUserIds.length; i++)
