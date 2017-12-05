@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { check } from 'meteor/check';
 
+import '../imports/api/users.js';
 import '../imports/api/tasks.js';
 import '../imports/api/groups.js';
 import '../imports/api/taskRepeatables.js';
