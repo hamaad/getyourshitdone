@@ -37,7 +37,8 @@ if (Meteor.isServer) {
               emailAddress : emailAddress,
               phoneNumber : phoneNumber,
               groupIds: [],
-              assignedTaskIds: []},
+              assignedTaskIds: [],
+              groupInvitations: []},
       });
 
       return userId;
