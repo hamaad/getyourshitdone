@@ -13,10 +13,10 @@ import moment from 'moment';
 // import './task.js';
 // import './group.js';
 
-import '../ui/account/dashboard.js';
-import '../ui/account/login.js';
-import '../ui/account/signup.js';
-import '../ui/account/forgotPassword.js';
+import '../ui/account/dashboard/dashboard.js';
+import '../ui/account/login/login.js';
+import '../ui/account/signup/signup.js';
+import '../ui/account/forgotPassword/forgotPassword.js';
 
 import './splashpage.js';
 import './profile.js';
