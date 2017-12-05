@@ -1,0 +1,182 @@
+<template name="contactUs">
+  <head>
+    <style>
+    body {
+        padding-top: 5rem;
+        }
+        .form-control2{
+        width:60px;
+        }
+        .starter-template {
+        padding: 3rem 1.5rem;
+        text-align: center;
+        }
+        .navcolor{
+        background-color: #fff;
+        color:black;
+        border:solid 1px;
+        }
+
+        .textcolor {
+        color:black;
+        }
+
+        .active {
+        color:darkgray;
+        border-left:solid 1px;
+        border-right: solid 1px;
+        }
+        .text {
+        width:100%;
+        }
+        li.nav-item a,
+        li.nav-item a:hover,
+        li.nav-item a:active {
+        color: black;
+        }
+
+        .navbar .navbar-brand {
+        line-height: 1em;
+        font-weight: 900;
+        font-size: 24px;
+        }
+
+        .navbar .navbar-brand .shit {
+        color: #fb4947;
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark navcolor fixed-top">
+        <a class="navbar-brand">Get<br/><span class="shit">Your Sh*t</span><br/>Done</a>
+        <a class="navbar-brand" style="font-size: .75rem;">(pull name here)</a>
+    </nav>
+    <nav class="navbar navbar-expand-md navbar-dark navcolor fixed-bottom justify-content-center">
+      <div class="navbar-expand" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a style= "color:black;" class="nav-link" href="tasks.html">Task</a>
+          </li>
+          <li class="nav-item">
+            <a style= "color:black;" class="nav-link" href="groups.html">Groups</a>
+          </li>
+          <li class="nav-item">
+            <a style= "color:black;" class="nav-link"  data-toggle="modal" data-target="#myModal"> + </a>
+          </li>
+          <li class="nav-item">
+            <a style= "color:black;" class="nav-link" href="profile.html">Profile</a>
+          </li>
+          <li class="nav-item dropup">
+            <a style= "color:black;" class="nav-link active dropdown-toggle" href="http://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown10">
+              <a class="dropdown-item" href="support.html">Support</a>
+              <a class="dropdown-item" href="contact_us.html">Contact US</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+        <div class="container">
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Task Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <select class='form-control' name="group" id="groupName">
+                      <option>Please hire me google</option>
+                      <option>Please hire me google2</option>
+                      <option>Please hire me google3</option>
+                    </select>
+                    <br>
+                    <input type=text placeholder='Task' class="form-control" id='add-task'>
+                    <br>
+                    <div class="date">
+                      <input type=text placeholder='MMM' class="form-control2" id='dueDateMM'>
+                    <input type=text placeholder='DD' class="form-control2" id='dueDate'>
+                    <input type=text placeholder='YYYY' class="form-control2" id='dueDateYYYY'>
+                    </div>
+                    <br>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button"  data-dismiss="modal">Close</button>
+                    <button type="submit" id="add-task-button" >Add Task</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form>
+                    <div class="row">
+                        <div class="col-12" style="text-align:center">
+                            <br/>
+                            Contact us <br/>
+                            at GetYourShitDone4@gmail.com
+                        </div>
+                    </div>
+                        <br/>
+                    <div class="row">
+                        <div class="col-4">
+                            <label><b>First Name</b></label>
+                        </div>
+                        <div class="col-8">
+                            <input type ="text" class="text" name ="first_name" placeholder ="First Name">
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-4">
+                            <label><b>Last Name</b></label>
+                        </div>
+                        <div class="col-8">
+                            <input type ="text" class="text" name ="last_name" placeholder ="Last Name">
+                        </div>
+                    </div>
+                        <br>
+                     <div class="row">
+                        <div class="col-4">
+                            <label><b>E-mail</b></label>
+                        </div>
+                        <div class="col-8">
+                            <input type ="text" class="text" name ="e-mail" placeholder ="E-mail">
+                        </div>
+                    </div>
+                        <br>
+                     <div class="row">
+                        <div class="col-4">
+                            <label><b>Message</b></label>
+                        </div>
+                        <div class="col-8">
+                            <textarea name ="message" class="text" placeholder ="Message" style ="height:200px"></textarea>
+                        </div>
+                    </div>
+                        <br>
+                     <div class="row">
+                        <div class="col">
+                            <input type ="submit" value ="Submit">
+                        </div>
+                    </div>
+
+            </form>
+        </div>
+
+    </main><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.2.1.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </body>
+</template>

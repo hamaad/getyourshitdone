@@ -22,6 +22,8 @@ import './splashpage.js';
 import './profile.js';
 import './groupView/groupView.js';
 
+import './options/contactUs.js'
+
 import './body.html';
 
 Template.body.onCreated(function bodyOnCreated() {
