@@ -87,6 +87,22 @@ if (Meteor.isServer) {
       Tasks.update(taskId,
         {$set: { 'overdue': setOverdue},
       });
+
+      // for all of the users, notify them
+      currentTask = Tasks.findOne(taskId);
+      currentTaskName = currentTask.name;
+      var assignedUserIds = currentTask.assignedUserIds;
+
+      for(i = 0; i < assignedUserIds.length; i++) {
+        currentUser = Meteor.users.findOne(assignedUserIds[i]);
+        currentUserFirstName = currentUser.firstName;
+        emailAddress = currentUser.emailAddress;
+        subject = "Overdue Task: " + currentTaskName + "!!!";
+        message = "Hey, " + currentUserFirstName + "! You messed up. You missed the due date for the task " + currentTaskName + "! Fix this now!";
+        Meteor.call('emailNotifications.sendEmail', emailAddress, subject, message);
+      }
+
+
     },
 
     // @@@@@@ function not used for now @@@@@@

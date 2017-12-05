@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.1.4",
     "autopublish": "0.0.8",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.3",
