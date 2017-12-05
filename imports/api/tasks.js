@@ -77,6 +77,19 @@ if (Meteor.isServer) {
       });
     },
 
+    // this method sets a task as overdue or not overdue
+    'tasks.setOverdue'(taskId, setOverdue) {
+      // do some basic verification of input
+      check(taskId, String);
+      check(setOverdue, Boolean);
+
+      // update tasks
+      Tasks.update(taskId,
+        {$set: { 'overdue': setOverdue},
+      });
+    },
+
+    // @@@@@@ function not used for now @@@@@@
     'tasks.updateName'(taskId, text) {
       Tasks.update(taskId, {
         $set: { 'text': text }
