@@ -44,6 +44,18 @@ if (Meteor.isServer) {
         }
       }
 
+      // else, invite them and notify them!
+      hostUserFirstName = Meteor.users.findOne(hostUserId).firstName;
+
+      invitedUserFirstName = invitedUser.firstName;
+      invitedUserEmailAddress = invitedUser.emailAddress;
+
+      groupName = Groups.findOne(groupId).name;
+
+      subject = "New group invitation to: " + groupName + "!";
+      message = "Hey, " + invitedUserFirstName + "! You have a been invited to '" + groupName + "' by " + hostUserFirstName + "! Visit getyourshitdone.club to accept or decline!";
+      Meteor.call('emailNotifications.sendEmail', invitedUserEmailAddress, subject, message);
+
       Meteor.users.update(invitedUserId, {
         $push: {"groupInvitations" : {"groupId" : groupId, "hostUserId" : hostUserId}}
       });
@@ -84,10 +96,12 @@ if (Meteor.isServer) {
       Meteor.users.update(Meteor.userId(), {
         $pull: { 'groupIds': groupId },
       });
+      // if there are no more users, delete the group and all corresponding group invitations
       if (Groups.findOne(groupId).userIds.length < 1)
       {
         Groups.remove(groupId);
       }
+      // else if there are users, make the next "first" user an admin
       else if (Groups.findOne(groupId).adminId == Meteor.userId())
       {
         Groups.update(groupId,

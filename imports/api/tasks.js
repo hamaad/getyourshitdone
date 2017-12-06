@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
+import moment from 'moment';
+
 export const Tasks = new Mongo.Collection('tasks');
 if (Meteor.isServer) {
 
@@ -22,12 +24,25 @@ if (Meteor.isServer) {
         finished: false
       });
 
+      // update every user and give them the task
+      // also, send them a notification!
+      groupName = Meteor.call('groups.getGroupName', groupId);
+      ownerFirstName = Meteor.user().firstName;
       for(i = 0; i < assignedUserIds.length; i++)
       {
         currentUserId = assignedUserIds[i];
         Meteor.users.update(currentUserId, {
           $push: { 'assignedTaskIds': taskId},
         });
+
+        currentUser = Meteor.users.findOne(currentUserId);
+
+        currentUserFirstName = currentUser.firstName;
+        emailAddress = currentUser.emailAddress;
+
+        subject = "New Task: " + name + "!!!";
+        message = "Hey, " + currentUserFirstName + "! You have a new task '" + name + "' assigned by " + ownerFirstName + " in the group " + groupName + "! It's due on " + moment(dueDate).format('MMMM DD YYYY') + "!";
+        Meteor.call('emailNotifications.sendEmail', emailAddress, subject, message);
       }
 
       Meteor.call('groups.addTask', groupId, taskId);
@@ -75,6 +90,24 @@ if (Meteor.isServer) {
       Tasks.update(taskId,
         {$set: { 'finished': setFinished},
       });
+
+      // if user clicked task is finished, then notify all assigned users that it has been completed by the user
+      if (setFinished === true) {
+        currentTask = Tasks.findOne(taskId);
+        currentTaskName = currentTask.name;
+        currentAssignedUserIds = currentTask.assignedUserIds;
+        completedByUserFirstName = Meteor.user().firstName;
+
+        for(i = 0; i < currentAssignedUserIds.length; i++) {
+          currentUser = Meteor.users.findOne(currentAssignedUserIds[i]);
+          currentUserFirstName = currentUser.firstName;
+          emailAddress = currentUser.emailAddress;
+
+          subject = "Task completed: " + currentTaskName + "!!!";
+          message = "Hey " + currentUserFirstName + ", it looks like " + completedByUserFirstName + " finished the task " + currentTaskName + "! Great work. :)";
+          Meteor.call('emailNotifications.sendEmail', emailAddress, subject, message);
+        }
+      }
     },
 
     // this method sets a task as overdue or not overdue
@@ -101,8 +134,6 @@ if (Meteor.isServer) {
         message = "Hey, " + currentUserFirstName + "! You messed up. You missed the due date for the task " + currentTaskName + "! Fix this now!";
         Meteor.call('emailNotifications.sendEmail', emailAddress, subject, message);
       }
-
-
     },
 
     // @@@@@@ function not used for now @@@@@@

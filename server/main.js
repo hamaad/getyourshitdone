@@ -27,12 +27,13 @@ if (Meteor.isServer) {
       check(username, String);
       check(password, String);
 
-      // do something
+      // create the user!
       userId = Accounts.createUser({
         username: username,
         password: password
       });
 
+      // assign the other user fields!
       Meteor.users.update(userId, {
         $set: {firstName : firstName,
               lastName : lastName,
@@ -42,6 +43,11 @@ if (Meteor.isServer) {
               assignedTaskIds: [],
               groupInvitations: []},
       });
+
+      // email the user welcoming them to the application!
+      subject = "Welcome to getyourshitdone, " + firstName + "!";
+      message = "Welcome to getyourshitdone, " + firstName + ". We're lucky to have you. Try creating a group and a task to get started! See you soon.";
+      Meteor.call('emailNotifications.sendEmail', emailAddress, subject, message);
 
       return userId;
     },
