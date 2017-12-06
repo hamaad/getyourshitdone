@@ -1,4 +1,248 @@
 <template name="splashpage">
+  <style>
+  body {
+  padding-top: 5rem;
+}
+
+.container {
+  position: absolute;
+  margin-top: 40px;
+  margin-bottom: 100px;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 1;
+    padding-left: 1;
+  }
+}
+.navfont {
+  font-size: 16px;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.individual_task {
+  background-color: #fff;
+  min-height: 150px;
+  max-height:300px;
+}
+.addButton {
+  width:25px;
+}
+.individual_task_header {
+  padding-left:10px;
+  padding-top:10px;
+}
+.group_task {
+  background-color: #fff;
+  min-height: 150px;
+  max-height:500px;
+}
+.group_task_header {
+  padding-left:10px;
+  padding-top:10px;
+}
+.group_padding {
+  padding-top:5px;
+}
+
+.navcolor{
+  background-color: #FFF;
+  color:black;
+  border:solid 1px;
+}
+
+.textcolor {
+  color:black;
+}
+
+.active {
+  color:darkgray;
+  border-left:solid 1px;
+  border-right: solid 1px;
+}
+
+li.nav-item a,
+li.nav-item a:hover,
+li.nav-item a:active {
+  color: black;
+}
+
+.navbar .navbar-brand {
+  line-height: 1em;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.navbar .navbar-brand .shit {
+  color: #fb4947;
+}
+
+#primary-section {
+  margin-top: 40px;
+}
+
+.task-card {
+  /* width, height, border, color */
+  position: relative;
+
+  height: 250px;
+  border: 1px solid #3e3e3e;
+  background-color: white;
+  color: black;
+  padding: 12px;
+  margin: 2px;
+}
+
+.task-card .task-name {
+  /* font, color, size, margin*/
+  font-family: arial;
+  font-size: 16px;
+  font-weight: 900;
+  color: black;
+  margin-top: 25%;
+
+}
+
+.task-card .task-status-text {
+  /* font, font-size, color, margin*/
+  color: black;
+  font-weight: lighter;
+  font-style: italic;
+}
+
+.task-card .task-due-date {
+  position: absolute;
+  bottom: 10%;
+  left: 12px;
+  font-weight: bold;
+}
+.group-id{
+  position:absolute;
+  bottom: 25%;
+  font-weight: bold;
+}
+.task-card .task-due-date .task-date,
+.task-card .task-due-date .task-status-text {
+  display: block;
+}
+
+.greenBackground {
+  background-color: #B8E986;
+}
+
+.task-card.overdue .task-due-date {
+  /* color, font, font-size, margin*/
+
+  font-family: arial;
+  font-size: 17px;
+  color: red;
+}
+
+.task-card.overdue {
+  background-color: #fb4947;
+}
+
+.task-card.in-progress .task-due-date {
+  /* color, font, font-size, margin*/
+  color: purple;
+}
+
+.task-card.complete .task-due-date {
+  /* color, font, font-size, margin*/
+  color: blue;
+}
+
+.task-card .task-complete {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  color: black;
+  font-size: 30px;
+}
+
+.task-card .task-delete {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: black;
+}
+
+.task-card .task-edit {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+.form-control2{
+  width:60px;
+}
+.task-card.overdue:hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+
+.add-task-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+input[type=text]#add-task #add-due-date {
+  height: 54px;
+  border: 1px solid black;
+  padding: 4px;
+  font-size: 22px;
+}
+
+button.add-task-button {
+  position: absolute;
+  height: 56px;
+  width: 15%;
+  background-color: grey;
+  border: none;
+  color: white;
+  right: 0;
+  top: 0;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+@media only screen and (max-width: 575px) {
+    body {
+        font-size: 10px;
+    }
+
+    .task-card .task-name {
+      font-size: 14px;
+    }
+
+
+}
+  </style>
   <main role="main" class="container" id="primary-section">
     <div class="container">
       <div class="row justify-content-center">

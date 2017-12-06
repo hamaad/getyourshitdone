@@ -84,7 +84,7 @@ Template.body.events({
               .options[document.getElementById("task-group-select").selectedIndex]
               .value;
     dueDate = document.getElementById("dateName").valueAsDate;
-    //dueDate.setHours(dueDate.getHours() + 6);
+    dueDate.setHours(dueDate.getHours() + 6);
     isRepeatable = document.getElementById("addTaskRepeatableChecked").checked;
     //create assignedUserIds[]
     assignedUserIdPool = $('#task-users-select').val();

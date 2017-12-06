@@ -2,24 +2,67 @@
   <!-- Task Card
         Figure out how to get in progress and stuff working -->
   <div class="col-4 task-card-wrapper">
-    <div class="task-card in-progress">
 
-      <h3 class="task-name">{{name}} from {{getGroupName}} for {{getAssignedUsernames}}</h3>
+    {{#if overdue}}
+      <div class="task-card overdue">
+        <h3 class="task-name">{{name}} from {{getGroupName}} for {{getAssignedUsernames}}</h3>
 
-      <div class="task-due-date">
-        <span class="task-date">{{dueDate}}</span>
-        <span class="task-status-text">{{#if finished}}FINISHED{{else}}NOT FINISHED{{/if}}</span>
+        <div class="task-due-date">
+          <span class="task-date">{{dueDate}}</span>
+          <span class="task-status-text">{{#if finished}}FINISHED{{else}}NOT FINISHED{{/if}}</span>
+        </div>
+        <div class="task-complete">
+           <i class="fa fa-check-square"></i>
+        </div>
+        <div class="task-delete">
+          <i class="fa fa-close"></i>
+        </div>
+        <div class="task-edit">
+          EDIT - DOES NOTHING
+        </div>
       </div>
-      <div class="task-complete">
-         <i class="fa fa-check-square"></i>
-      </div>
-      <div class="task-delete">
-        <i class="fa fa-close"></i>
-      </div>
-      <div class="task-edit">
-        EDIT - DOES NOTHING
-      </div>
-    </div>
+    {{else}}
+
+      {{#if finished}}
+        <div class="task-card complete">
+          <h3 class="task-name">{{name}} from {{getGroupName}} for {{getAssignedUsernames}}</h3>
+
+          <div class="task-due-date">
+            <span class="task-date">{{dueDate}}</span>
+            <span class="task-status-text">{{#if finished}}FINISHED{{else}}NOT FINISHED{{/if}}</span>
+          </div>
+          <div class="task-complete">
+             <i class="fa fa-check-square"></i>
+          </div>
+          <div class="task-delete">
+            <i class="fa fa-close"></i>
+          </div>
+          <div class="task-edit">
+            EDIT - DOES NOTHING
+          </div>
+        </div>
+      {{else}}
+        <div class="task-card in-progress">
+          <h3 class="task-name">{{name}} from {{getGroupName}} for {{getAssignedUsernames}}</h3>
+
+          <div class="task-due-date">
+            <span class="task-date">{{dueDate}}</span>
+            <span class="task-status-text">{{#if finished}}FINISHED{{else}}NOT FINISHED{{/if}}</span>
+          </div>
+          <div class="task-complete">
+             <i class="fa fa-check-square"></i>
+          </div>
+          <div class="task-delete">
+            <i class="fa fa-close"></i>
+          </div>
+          <div class="task-edit">
+            EDIT - DOES NOTHING
+          </div>
+        </div>
+      {{/if}}
+    {{/if}}
+
+
   </div>
   <!-- End Task Card -->
 
