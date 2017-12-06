@@ -21,5 +21,21 @@ if (Meteor.isServer) {
                             phoneNumber: newPhoneNumber }
                           });
     },
+    'users.changePassword'(username, userEmail, password) {
+      check(username, String);
+      check(userEmail, String);
+      check(password, String);
+
+      currentUser = Meteor.users.findOne({"username" : username});
+      currentUserId = currentUser._id;
+      currentUserEmailAddress = currentUser.emailAddress;
+
+      if (currentUserEmailAddress === userEmail) {
+        Accounts.setPassword(currentUserId,password);
+      } else {
+        throw new Meteor.Error("email-not-matching", "Error: Email doesn't match user's email.");
+      }
+
+    },
   });
 }
