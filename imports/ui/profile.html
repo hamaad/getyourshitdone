@@ -80,18 +80,20 @@
              </div>
              <div class="modal-body">
                <h5 id="error-message"></h5>
-               <input type=text value='{{getUserDocument.firstName}}' class="form-control" id='newFirstNameText'>
-               <br>
-               <input type=text value='{{getUserDocument.lastName}}' class="form-control" id='newLastNameText'>
-               <br>
-               <input type=text value="{{getUserDocument.emailAddress}}" class="form-control" id='newEmailAddressText'>
-               <br>
-               <input type=text value='{{getUserDocument.phoneNumber}}' class="form-control" id='newPhoneNumberText'>
-               <br>
-             </div>
-             <div class="modal-footer">
-               <button type="button"  data-dismiss="modal">Cancel</button>
-               <button type="submit" id="update-profile-button">Update</button>
+               <form class ='form-signup'>
+                 <input type="text" value='{{getUserDocument.firstName}}' class="form-control" id='newFirstNameText'>
+                 <br>
+                 <input type="text" value='{{getUserDocument.lastName}}' class="form-control" id='newLastNameText'>
+                 <br>
+                 <input type="email" value="{{getUserDocument.emailAddress}}" class="form-control" id='newEmailAddressText' required>
+                 <br>
+                 <input type="text" value='{{getUserDocument.phoneNumber}}' class="form-control" id='newPhoneNumberText'>
+                 <br>
+                 <div class="modal-footer">
+                   <button type="button"  data-dismiss="modal">Cancel</button>
+                   <button type="submit" id="update-profile-button">Update</button>
+                 </div>
+               </form>
              </div>
            </div>
          </div>

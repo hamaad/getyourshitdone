@@ -13,7 +13,8 @@ if (Meteor.isServer) {
         adminId: Meteor.userId(),
         userIds: [Meteor.userId()],
         taskIds: [],
-        taskRepeatableIds: []
+        taskRepeatableIds: [],
+        pendingInvitationUserIds: []
       });
 
       Meteor.users.update(Meteor.userId(), {
@@ -59,6 +60,10 @@ if (Meteor.isServer) {
       Meteor.users.update(invitedUserId, {
         $push: {"groupInvitations" : {"groupId" : groupId, "hostUserId" : hostUserId}}
       });
+
+      Groups.update(groupId, {
+        $push: {'pendingInvitationUserIds' : invitedUserId}
+      });
     },
 
     'groups.acceptGroupInvitation'(groupId) {
@@ -88,6 +93,12 @@ if (Meteor.isServer) {
       });
     },
 
+    'groups.deleteGroupInvitation'(groupId, userId) {
+      Meteor.users.update(userId, {
+        $pop: {"groupInvitations" : {"groupId" : groupId}}
+      });
+    },
+
     'groups.leaveGroup'(groupId) {
       Groups.update(groupId, {
         $pull: { 'userIds': Meteor.userId()},
@@ -97,16 +108,31 @@ if (Meteor.isServer) {
         $pull: { 'groupIds': groupId },
       });
       // if there are no more users, delete the group and all corresponding group invitations
-      if (Groups.findOne(groupId).userIds.length < 1)
+      currentGroup = Groups.findOne(groupId);
+      currentGroupUserIds = currentGroup.userIds;
+      if (currentGroupUserIds.length < 1)
       {
+        //delete all task
+        currentGroupTaskIds = currentGroup.taskIds;
+        for(currentTaskIdIndex=0; currentTaskIdIndex<currentGroupTaskIds.length; currentTaskIdIndex++) {
+          Meteor.call('tasks.remove', currentGroupTaskIds[currentTaskIdIndex]);
+        }
+        //delete all invitations
+        currentGroupInvitationUserIds = currentGroup.pendingInvitationUserIds;
+        for(currentInvitationsUserIdIndex=0; currentInvitationsUserIdIndex<currentGroupInvitationUserIds.length; currentInvitationsUserIdIndex++) {
+          Meteor.call('groups.deleteGroupInvitation', groupId, currentGroupInvitationUserIds[currentInvitationsUserIdIndex]);
+          Groups.update(groupId, {
+            $pop: {'pendingInvitationUserIds': currentGroupInvitationUserIds[currentInvitationsUserIdIndex]}
+          });
+        }
         Groups.remove(groupId);
       }
       // else if there are users, make the next "first" user an admin
-      else if (Groups.findOne(groupId).adminId == Meteor.userId())
+      else if (currentGroup.adminId == Meteor.userId())
       {
         Groups.update(groupId,
         {
-          $set: {'adminId': Groups.findOne(groupId).userIds[0]},
+          $set: {'adminId': currentGroupUserIds[0]},
         });
       }
     },

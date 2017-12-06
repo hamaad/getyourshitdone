@@ -12,7 +12,8 @@ Template.profile.helpers({
 });
 
 Template.profile.events({
-  'click #update-profile-button'() {
+  'submit .form-signup'(event) {
+    event.preventDefault();
     newFirstName = document.getElementById('newFirstNameText').value;
     newLastName = document.getElementById('newLastNameText').value;
     newEmailAddress = document.getElementById('newEmailAddressText').value;
