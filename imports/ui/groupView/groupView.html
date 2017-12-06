@@ -1,25 +1,43 @@
 <template name="groupView">
-  <main role="main" class="container" id="primary-section">
-    <div class="container">
-      <div class="invitations">
-        {{#each userInvitations}}
-          {{> groupInvitation}}
-        {{/each}}
-      </div>
+  <head>
+    <style>
+    .column-manager {
+      width: 50%;
+      display: inline-block;
+      position: relative;
+      box-shadow: 0 0 1px black inset;
+    }
+    .column-manager .row-manager {
+      display: block;
+    }
+    </style>
+  </head>
+  <body>
+    <main role="main" class="container" id="primary-section">
+      <div class="container">
+        <div class="column-manager">
+          <div class="row-manager">
+            <div class="invitations">
+              {{#each userInvitations}}
+                {{> groupInvitation}}
+              {{/each}}
+            </div>
+          </div>
+        </div>
+       <div class="add-group-wrapper">
+          <input type ="text"  class="form-control" id ="add-group" placeholder ="Add new group">
+          <button id="add-group-button" class="add-group-button">New Group</button>
+        </div>
+        <br>
 
-      <div class="add-group-wrapper">
-        <input type ="text"  class="form-control " id ="add-group" placeholder ="Add new group">
-        <button id="add-group-button" class="add-group-button">New Group</button>
+       <div class="userG">
+          <ul>
+            {{#each userGroups}}
+              {{> group}}
+            {{/each}}
+          </ul>
+        </div>
       </div>
-      <br>
-
-      <div class="userG">
-        <ul>
-          {{#each userGroups}}
-            {{> group}}
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </main>
+    </main>
+  </body>
 </template>
