@@ -22,7 +22,8 @@ import './splashpage.js';
 import './profile.js';
 import './groupView/groupView.js';
 
-import './options/contactUs.js'
+import './options/contactUs.js';
+import './options/support.js';
 
 import './body.html';
 
