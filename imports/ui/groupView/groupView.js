@@ -15,7 +15,7 @@ Template.groupView.helpers({
   },
   userGroups() {
     return Groups.find({userIds: Meteor.userId()});
-  },
+  }
 });
 
 Template.groupView.events({
